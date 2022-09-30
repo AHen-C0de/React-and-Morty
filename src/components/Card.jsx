@@ -7,7 +7,7 @@ export default function Card({ info }) {
       <Image src={source} />
       <Name>{name}</Name>
       <ShowMoreButton>Show more</ShowMoreButton>
-      <Details>
+      <Details hidden>
         <tr>
           <td>Status:</td>
           <td>{status}</td>
