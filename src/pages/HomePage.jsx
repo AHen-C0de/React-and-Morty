@@ -7,7 +7,7 @@ export default function CardsPage({ characters }) {
   return (
     <CardsContainer>
       {characters.map(({ id, ...character }) => {
-        return <Card key={id} id={id} info={{ ...character }} />;
+        return <Card key={id} id={id} info={{ ...character }} hideDetails={true} />;
       })}
     </CardsContainer>
   );

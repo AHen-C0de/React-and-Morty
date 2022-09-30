@@ -7,11 +7,13 @@ import Card from '../components/cards/Card.jsx';
 export default function DetailsPage({ characters }) {
   const { characterID } = useParams();
 
-  const [clickedCharacter] = characters.filter((character) => character.id == characterID);
-
   return (
     <CardsContainer>
-      <Card key={clickedCharacter.id} id={clickedCharacter.id} info={{ ...clickedCharacter }} />;
+      {characters
+        .filter((character) => character.id == characterID)
+        .map(({ id, ...character }) => (
+          <Card key={id} id={id} info={{ ...character }} hideDetails={false} />
+        ))}
     </CardsContainer>
   );
 }

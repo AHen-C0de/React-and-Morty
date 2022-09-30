@@ -37,6 +37,7 @@ function App() {
 
   useEffect(() => {
     fetchCharacters();
+    console.log('run');
   }, []);
 
   return (
