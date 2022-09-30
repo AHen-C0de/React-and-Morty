@@ -1,13 +1,14 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import Card from '../components/Card.jsx';
 
-export default function CardsPage({ characters }) {
+export default function DetailsPage({ characters, id }) {
+  const character = characters.filter((character) => character.id === id);
+  console.log(character);
   return (
     <CardsContainer>
-      {characters.map(({ id, ...character }) => {
-        return <Card key={id} id={id} info={{ ...character }} />;
-      })}
+      <Card key={id} info={{ ...character }} />;
     </CardsContainer>
   );
 }

@@ -3,12 +3,16 @@ import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
 import './App.css';
-import Header from './components/Header.jsx';
-import Footer from './components/Footer.jsx';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
+import DetailsPage from './pages/DetailsPage';
+// delete below!
+import Card from './components/Card';
 
 function App() {
   const [characters, setCharacters] = useState([]);
+  const [one, setOne] = useState({});
 
   async function fetchCharacters() {
     try {
@@ -29,6 +33,7 @@ function App() {
       });
 
       setCharacters(fetchedCharacters);
+      setOne(fetchedCharacters[0]);
     } catch (error) {
       console.error('Fetching data failed: ' + error);
     }
@@ -44,6 +49,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<HomePage characters={characters} />}></Route>
+          <Route path="/details/:id" element={<Card key={one.id} info={{ ...one }} />}></Route>
         </Routes>
       </main>
       <Footer />

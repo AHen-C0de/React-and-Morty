@@ -1,12 +1,15 @@
+import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
 
-export default function Card({ info }) {
+export default function Card({ id, info }) {
   const { source, name, status, species, gender, origin, location } = info;
+  console.log(id);
   return (
     <CardContainer>
       <Image src={source} />
       <Name>{name}</Name>
-      <ShowMoreButton>Show more</ShowMoreButton>
+      <StyledLink to={`/details/${id}`}>Show more</StyledLink>
       <Details hidden>
         <tr>
           <td>Status:</td>
@@ -53,7 +56,7 @@ const Name = styled.h2`
   color: white;
 `;
 
-const ShowMoreButton = styled.button`
+const StyledLink = styled(Link)`
   background-color: var(--color-main);
   color: white;
   border-radius: 0.4rem;
