@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export default function Header() {
   return (
@@ -6,10 +7,12 @@ export default function Header() {
       <Headline>React & Morty</Headline>
       <nav>
         <NavigationList>
-          <NavigationItem>Home</NavigationItem>
-          <NavigationItem>Random</NavigationItem>
-          <NavigationItem>Favorites</NavigationItem>
-          <NavigationItemLast>Get creative</NavigationItemLast>
+          <NavLink to="/" end>
+            Home
+          </NavLink>
+          <NavLink>Random</NavLink>
+          <NavLink>Favorites</NavLink>
+          <NavLink>Get creative</NavLink>
         </NavigationList>
       </nav>
     </StyledHeader>
@@ -26,21 +29,26 @@ const Headline = styled.h1`
   padding: 0.5rem;
 `;
 
-const NavigationList = styled.ul`
-  list-style-type: none;
+const NavigationList = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   width: 100%;
   padding: 0;
   border-top: solid 1px var(--color-main-sub);
-`;
 
-const NavigationItem = styled.li`
-  border-right: solid 1px var(--color-main-sub);
-  padding: 0.3rem;
-  height: 100%;
-`;
+  > * {
+    border-right: solid 1px var(--color-main-sub);
+    padding: 0.3rem;
+    height: 100%;
+    color: white;
+    text-decoration: none;
 
-const NavigationItemLast = styled.li`
-  padding: 0.3rem;
+    &:last-child {
+      border-right: none;
+    }
+
+    &:hover {
+      background-color: var(--color-main-sub);
+    }
+  }
 `;

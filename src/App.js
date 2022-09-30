@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
 import './App.css';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
-import Card from './components/Card.jsx';
+import HomePage from './pages/HomePage';
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -37,17 +38,13 @@ function App() {
     fetchCharacters();
   }, []);
 
-  console.log(characters);
-
   return (
     <div className="App">
       <Header />
       <main>
-        <CardsWrapper>
-          {characters.map(({ id, ...character }) => {
-            return <Card key={id} info={{ ...character }} />;
-          })}
-        </CardsWrapper>
+        <Routes>
+          <Route path="/" element={<HomePage characters={characters} />}></Route>
+        </Routes>
       </main>
       <Footer />
     </div>
@@ -55,10 +52,3 @@ function App() {
 }
 
 export default App;
-
-const CardsWrapper = styled.div`
-  padding: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-`;
