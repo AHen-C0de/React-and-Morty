@@ -1,21 +1,17 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-import Card from '../components/Card.jsx';
+import CardsContainer from '../components/cards/CardContainer.jsx';
+import Card from '../components/cards/Card.jsx';
 
-export default function DetailsPage({ characters, id }) {
-  const character = characters.filter((character) => character.id === id);
-  console.log(character);
+export default function DetailsPage({ characters }) {
+  const { characterID } = useParams();
+
+  const [clickedCharacter] = characters.filter((character) => character.id == characterID);
+
   return (
     <CardsContainer>
-      <Card key={id} info={{ ...character }} />;
+      <Card key={clickedCharacter.id} id={clickedCharacter.id} info={{ ...clickedCharacter }} />;
     </CardsContainer>
   );
 }
-
-const CardsContainer = styled.div`
-  padding: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-`;

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 export default function Card({ id, info }) {
   const { source, name, status, species, gender, origin, location } = info;
-  console.log(id);
   return (
     <CardContainer>
       <Image src={source} />
