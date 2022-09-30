@@ -37,14 +37,15 @@ function App() {
     fetchCharacters();
   }, []);
 
+  console.log(characters);
+
   return (
     <div className="App">
       <Header />
       <main>
         <CardsWrapper>
-          <Card />
-          {characters.map((character) => {
-            return <Card />;
+          {characters.map(({ id, ...character }) => {
+            return <Card key={id} info={{ ...character }} />;
           })}
         </CardsWrapper>
       </main>

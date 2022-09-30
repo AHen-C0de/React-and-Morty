@@ -1,12 +1,38 @@
 import styled from 'styled-components';
 
-export default function Card() {
+export default function Card({ info }) {
+  const { source, name, status, species, gender, origin, location } = info;
   return (
     <CardContainer>
-      <Image src="https://rickandmortyapi.com/api/character/avatar/2.jpeg" />
-      <Name>Name</Name>
+      <Image src={source} />
+      <Name>{name}</Name>
       <ShowMoreButton>Show more</ShowMoreButton>
-      <Details>Detailed Information...</Details>
+      <Details>
+        <tr>
+          <td>Status:</td>
+          <td>{status}</td>
+        </tr>
+
+        <tr>
+          <td>Species:</td>
+          <td>{species}</td>
+        </tr>
+
+        <tr>
+          <td>Gender:</td>
+          <td>{gender}</td>
+        </tr>
+
+        <tr>
+          <td>Origin:</td>
+          <td>{origin}</td>
+        </tr>
+
+        <tr>
+          <td>Location:</td>
+          <td>{location}</td>
+        </tr>
+      </Details>
     </CardContainer>
   );
 }
@@ -34,13 +60,17 @@ const ShowMoreButton = styled.button`
   padding: 0.35rem;
 `;
 
-const Details = styled.p`
+const Details = styled.table`
   background-color: var(--color-main);
   color: white;
-  padding: 1.5rem;
+  padding: 0.5rem;
   font-size: 0.8rem;
   border-radius: 0.3rem;
   width: 100%;
+
+  > tr > td:nth-child(1) {
+    font-weight: bold;
+  }
 `;
 
 const Image = styled.img`
