@@ -18,9 +18,9 @@ const CardContainer = styled.article`
   align-items: center;
   padding: 1rem;
   gap: 1rem;
-  width: 70%;
+  width: 200px;
   border-radius: 0.3rem;
-  margin: 2rem auto;
+  margin: auto;
 `;
 
 const Name = styled.h2`

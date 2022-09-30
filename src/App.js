@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 import './App.css';
 import Header from './components/Header.jsx';
@@ -36,14 +37,16 @@ function App() {
     fetchCharacters();
   }, []);
 
-  console.log(characters);
-
   return (
     <div className="App">
       <Header />
       <main>
-        <Card />
-        <Card />
+        <CardsWrapper>
+          <Card />
+          {characters.map((character) => {
+            return <Card />;
+          })}
+        </CardsWrapper>
       </main>
       <Footer />
     </div>
@@ -51,3 +54,10 @@ function App() {
 }
 
 export default App;
+
+const CardsWrapper = styled.div`
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+`;
