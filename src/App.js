@@ -12,9 +12,8 @@ function App() {
     try {
       const response = await fetch('https://rickandmortyapi.com/api/character');
       const data = await response.json();
-      //console.log(data.results);
 
-      const test = data.results.map((character) => {
+      const fetchedCharacters = data.results.map((character) => {
         return {
           id: character.id,
           name: character.name,
@@ -27,7 +26,7 @@ function App() {
         };
       });
 
-      console.log(test);
+      setCharacters(fetchedCharacters);
     } catch (error) {
       console.error('Fetching data failed: ' + error);
     }
@@ -36,6 +35,8 @@ function App() {
   useEffect(() => {
     fetchCharacters();
   }, []);
+
+  console.log(characters);
 
   return (
     <div className="App">
