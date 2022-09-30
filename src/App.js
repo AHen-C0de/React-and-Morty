@@ -1,31 +1,17 @@
 import './App.css';
+import Header from './components/Header.jsx';
+import Footer from './components/Footer.jsx';
+import Card from './components/Card.jsx';
 
 function App() {
   return (
     <div className="App">
-      {' '}
-      <header>
-        <h1>React & Morty</h1>
-        <nav>
-          <ul>
-            <li>Home</li>
-            <li>Random</li>
-            <li>Favorites</li>
-            <li>Get creative</li>
-          </ul>
-        </nav>
-      </header>
+      <Header />
       <main>
-        <article>
-          <img src="https://rickandmortyapi.com/api/character/avatar/2.jpeg" />
-          <h2>Name</h2>
-          <button>Show more</button>
-          <p hidden>Detailed Information...</p>
-        </article>
+        <Card />
+        <Card />
       </main>
-      <footer>
-        <a href="https://de.wikipedia.org/wiki/Rick_and_Morty">What is Rick & Morty?</a>
-      </footer>
+      <Footer />
     </div>
   );
 }
