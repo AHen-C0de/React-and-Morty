@@ -1,20 +1,14 @@
 import styled from 'styled-components';
 
-import Card from '../components/Card.jsx';
+import CardsContainer from '../components/cards/CardContainer.jsx';
+import Card from '../components/cards/Card.jsx';
 
 export default function CardsPage({ characters }) {
   return (
     <CardsContainer>
       {characters.map(({ id, ...character }) => {
-        return <Card key={id} info={{ ...character }} />;
+        return <Card key={id} id={id} info={{ ...character }} hideDetails={true} />;
       })}
     </CardsContainer>
   );
 }
-
-const CardsContainer = styled.div`
-  padding: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-`;

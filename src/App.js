@@ -3,9 +3,10 @@ import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
 import './App.css';
-import Header from './components/Header.jsx';
-import Footer from './components/Footer.jsx';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
+import DetailsPage from './pages/DetailsPage';
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -36,6 +37,7 @@ function App() {
 
   useEffect(() => {
     fetchCharacters();
+    console.log('run');
   }, []);
 
   return (
@@ -44,6 +46,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<HomePage characters={characters} />}></Route>
+          <Route path="/details/:characterID" element={<DetailsPage characters={characters} />}></Route>
         </Routes>
       </main>
       <Footer />
