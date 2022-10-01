@@ -13,15 +13,17 @@ export default function Card({
   isFav,
 }) {
   const { source, status, species, gender, origin, location } = info;
+  console.log(isFav);
   return (
     <CardContainer hideDetails={hideDetails}>
-      {if (!hideDetails){
-        if (isFav) {
-        <StyledFavLogoAc onClick={() => onFavToggle(name)} />
-        } else {
-        <StyledFavLogoInac onClick={() => onFavToggle(name)} />
-        }
-      }
+      {!hideDetails &&
+        isFav && ( // on DetailsPage only + favorite
+          <StyledFavLogoAc onClick={() => onFavToggle(name)} />
+        )}
+      {!hideDetails &&
+        !isFav && ( // on DetailsPage only + NOT favorite
+          <StyledFavLogoInac onClick={() => onFavToggle(name)} />
+        )}
       <Image src={source} />
       <Name>{name}</Name>
       <Details hidden={hideDetails}>
@@ -119,7 +121,7 @@ const StyledFavLogoInac = styled(FavLogoInac)`
 
 const StyledFavLogoAc = styled(FavLogoAc)`
   position: absolute;
-  fill: black;
+  fill: #c14a4a;
   right: -0.4rem;
   top: -0.4rem;
   transform: scale(1.5);

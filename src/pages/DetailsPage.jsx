@@ -6,6 +6,7 @@ import Card from '../components/cards/Card.jsx';
 
 export default function DetailsPage({ characters, onFavToggle, favList }) {
   const { characterID } = useParams();
+  console.log(favList);
 
   return (
     <CardsContainer>

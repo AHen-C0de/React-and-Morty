@@ -43,13 +43,11 @@ function App() {
   }, []);
 
   function toggleFavorites(name) {
-    const prevFavList = [...favList];
     setFavList((prevFavList) =>
       prevFavList.includes(name)
         ? prevFavList.filter((favName) => favName !== name)
         : [...prevFavList, name]
     );
-    console.log(prevFavList);
   }
 
   return (
