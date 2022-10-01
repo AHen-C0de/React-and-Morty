@@ -13,7 +13,7 @@ export default function Card({
   isFav,
 }) {
   const { source, status, species, gender, origin, location } = info;
-  console.log(isFav);
+
   return (
     <CardContainer hideDetails={hideDetails}>
       {!hideDetails &&

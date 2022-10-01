@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { useLocalStorage } from './hooks';
 import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -10,7 +11,8 @@ import DetailsPage from './pages/DetailsPage';
 
 function App() {
   const [characters, setCharacters] = useState([]);
-  const [favList, setFavList] = useState([]);
+  const [favList, setFavList, removeFavList] = useLocalStorage('favList', []);
+  console.log(favList);
 
   useEffect(() => {
     async function fetchCharacters() {
