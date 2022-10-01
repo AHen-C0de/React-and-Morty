@@ -6,8 +6,16 @@ import Card from '../components/cards/Card.jsx';
 export default function CardsPage({ characters }) {
   return (
     <CardsContainer>
-      {characters.map(({ id, ...character }) => {
-        return <Card key={id} id={id} info={{ ...character }} hideDetails={true} />;
+      {characters.map(({ id, name, ...character }) => {
+        return (
+          <Card
+            key={id}
+            id={id}
+            name={name}
+            info={{ ...character }}
+            hideDetails={true}
+          />
+        );
       })}
     </CardsContainer>
   );

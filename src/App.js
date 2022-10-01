@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { useLocalStorage } from './hooks';
 import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -10,48 +11,75 @@ import DetailsPage from './pages/DetailsPage';
 
 function App() {
   const [characters, setCharacters] = useState([]);
-
-  async function fetchCharacters() {
-    try {
-      const response = await fetch('https://rickandmortyapi.com/api/character');
-      const data = await response.json();
-
-      const fetchedCharacters = data.results.map((character) => {
-        return {
-          id: character.id,
-          name: character.name,
-          source: character.image,
-          status: character.status,
-          species: character.species,
-          gender: character.gender,
-          origin: character.origin.name,
-          location: character.location.name,
-        };
-      });
-
-      setCharacters(fetchedCharacters);
-    } catch (error) {
-      console.error('Fetching data failed: ' + error);
-    }
-  }
+  const [favList, setFavList, removeFavList] = useLocalStorage('favList', []);
+  console.log(favList);
 
   useEffect(() => {
+    async function fetchCharacters() {
+      try {
+        const response = await fetch(
+          'https://rickandmortyapi.com/api/character'
+        );
+        const data = await response.json();
+
+        const fetchedCharacters = data.results.map((character) => {
+          return {
+            id: character.id,
+            name: character.name,
+            source: character.image,
+            status: character.status,
+            species: character.species,
+            gender: character.gender,
+            origin: character.origin.name,
+            location: character.location.name,
+          };
+        });
+
+        setCharacters(fetchedCharacters);
+      } catch (error) {
+        console.error('Fetching data failed: ' + error);
+      }
+    }
+
     fetchCharacters();
-    console.log('run');
   }, []);
+
+  function toggleFavorites(name) {
+    setFavList((prevFavList) =>
+      prevFavList.includes(name)
+        ? prevFavList.filter((favName) => favName !== name)
+        : [...prevFavList, name]
+    );
+  }
 
   return (
     <div className="App">
       <Header />
-      <main>
+      <Content>
         <Routes>
-          <Route path="/" element={<HomePage characters={characters} />}></Route>
-          <Route path="/details/:characterID" element={<DetailsPage characters={characters} />}></Route>
+          <Route
+            path="/"
+            element={<HomePage characters={characters} />}
+          ></Route>
+          <Route
+            path="/details/:characterID"
+            element={
+              <DetailsPage
+                characters={characters}
+                onFavToggle={toggleFavorites}
+                favList={favList}
+              />
+            }
+          ></Route>
         </Routes>
-      </main>
+      </Content>
       <Footer />
     </div>
   );
 }
 
 export default App;
+
+const Content = styled.main`
+  padding-bottom: 2rem;
+`;
