@@ -11,7 +11,7 @@ export default function Header() {
             Home
           </NavLink>
           <NavLink>Random</NavLink>
-          <NavLink>Favorites</NavLink>
+          <NavLink to="/favorites">Favorites</NavLink>
           <NavLink>Get creative</NavLink>
         </NavigationList>
       </nav>
