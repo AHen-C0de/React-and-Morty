@@ -10,7 +10,7 @@ export default function FavoritesPage({
   onClear,
 }) {
   return (
-    <FavoritesWrapper>
+    <>
       <ClearButton onClick={onClear}>Clear Favorites</ClearButton>
       <CardsContainer>
         {characters
@@ -27,15 +27,9 @@ export default function FavoritesPage({
             />
           ))}
       </CardsContainer>
-    </FavoritesWrapper>
+    </>
   );
 }
-
-const FavoritesWrapper = styled.div`
-  /* display: flex;
-  flex-direction: column;
-  align-items: start; */
-`;
 
 const ClearButton = styled.button`
   position: absolute;
