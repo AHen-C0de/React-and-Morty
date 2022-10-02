@@ -7,12 +7,12 @@ import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
+import FavoritesPage from './pages/FavoritesPage';
 import DetailsPage from './pages/DetailsPage';
 
 function App() {
   const [characters, setCharacters] = useState([]);
   const [favList, setFavList, removeFavList] = useLocalStorage('favList', []);
-  console.log(favList);
 
   useEffect(() => {
     async function fetchCharacters() {
@@ -52,15 +52,27 @@ function App() {
     );
   }
 
+  function clearFavorites() {
+    setFavList([]);
+  }
+
   return (
     <div className="App">
       <Header />
       <Content>
         <Routes>
+          <Route path="/" element={<HomePage characters={characters} />} />
           <Route
-            path="/"
-            element={<HomePage characters={characters} />}
-          ></Route>
+            path="/favorites"
+            element={
+              <FavoritesPage
+                characters={characters}
+                onFavToggle={toggleFavorites}
+                favList={favList}
+                onClear={clearFavorites}
+              />
+            }
+          />
           <Route
             path="/details/:characterID"
             element={
@@ -70,7 +82,7 @@ function App() {
                 favList={favList}
               />
             }
-          ></Route>
+          />
         </Routes>
       </Content>
       <Footer />
