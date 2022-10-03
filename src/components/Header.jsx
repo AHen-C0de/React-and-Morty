@@ -10,7 +10,7 @@ export default function Header() {
           <NavLink to="/" end>
             Home
           </NavLink>
-          <NavLink>Random</NavLink>
+          <NavLink to="/random">Random</NavLink>
           <NavLink to="/favorites">Favorites</NavLink>
           <NavLink>Get creative</NavLink>
         </NavigationList>

@@ -7,6 +7,7 @@ import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
+import RandomPage from './pages/RandomPage';
 import FavoritesPage from './pages/FavoritesPage';
 import DetailsPage from './pages/DetailsPage';
 
@@ -56,6 +57,11 @@ function App() {
     setFavList([]);
   }
 
+  function getRandomCharacter() {
+    const id = Math.ceil(Math.random() * 20);
+    return characters.filter((character) => character.id === id);
+  }
+
   return (
     <div className="App">
       <Header />
@@ -63,12 +69,16 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage characters={characters} />} />
           <Route
+            path="/random"
+            element={<RandomPage onRandom={getRandomCharacter} />}
+          />
+          <Route
             path="/favorites"
             element={
               <FavoritesPage
                 characters={characters}
-                onFavToggle={toggleFavorites}
                 favList={favList}
+                onFavToggle={toggleFavorites}
                 onClear={clearFavorites}
               />
             }
@@ -94,4 +104,5 @@ export default App;
 
 const Content = styled.main`
   padding-bottom: 2rem;
+  min-height: 100%;
 `;
