@@ -1,15 +1,36 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 
-export default function RandomPage() {
+import Card from '../components/cards/Card';
+import CardsContainer from '../components/cards/CardContainer';
+
+export default function RandomPage({ onRandom }) {
+  const [randomChar, setRandomChar] = useState([]);
+
   return (
-    <NotLoadedWrapper>
-      <NotLoaded>?</NotLoaded>
-      <GetButton>Get random character</GetButton>
-    </NotLoadedWrapper>
+    <RandomPageWrapper>
+      {randomChar.length === 0 ? (
+        <NotLoaded>?</NotLoaded>
+      ) : (
+        <CardsContainer>
+          {randomChar.map(({ id, name, ...character }) => (
+            <Card
+              id={id}
+              name={name}
+              info={{ ...character }}
+              hideDetails={true}
+            />
+          ))}
+        </CardsContainer>
+      )}
+      <GetButton onClick={() => setRandomChar(onRandom())}>
+        Get random character
+      </GetButton>
+    </RandomPageWrapper>
   );
 }
 
-const NotLoadedWrapper = styled.div`
+const RandomPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

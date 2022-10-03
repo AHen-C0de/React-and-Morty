@@ -57,20 +57,28 @@ function App() {
     setFavList([]);
   }
 
+  function getRandomCharacter() {
+    const id = Math.ceil(Math.random() * 20);
+    return characters.filter((character) => character.id === id);
+  }
+
   return (
     <div className="App">
       <Header />
       <Content>
         <Routes>
           <Route path="/" element={<HomePage characters={characters} />} />
-          <Route path="/random" element={<RandomPage />} />
+          <Route
+            path="/random"
+            element={<RandomPage onRandom={getRandomCharacter} />}
+          />
           <Route
             path="/favorites"
             element={
               <FavoritesPage
                 characters={characters}
-                onFavToggle={toggleFavorites}
                 favList={favList}
+                onFavToggle={toggleFavorites}
                 onClear={clearFavorites}
               />
             }
