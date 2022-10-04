@@ -12,16 +12,15 @@ export default function RandomPage({ onRandom }) {
       {randomChar.length === 0 ? (
         <NotLoaded>?</NotLoaded>
       ) : (
-        <CardsContainer>
-          {randomChar.map(({ id, name, ...character }) => (
-            <Card
-              id={id}
-              name={name}
-              info={{ ...character }}
-              hideDetails={true}
-            />
-          ))}
-        </CardsContainer>
+        randomChar.map(({ id, name, ...character }) => (
+          <Card
+            key={id}
+            id={id}
+            name={name}
+            info={{ ...character }}
+            hideDetails={true}
+          />
+        ))
       )}
       <GetButton onClick={() => setRandomChar(onRandom())}>
         Get random character
@@ -35,6 +34,7 @@ const RandomPageWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 2rem;
+  gap: 1rem;
 `;
 
 const NotLoaded = styled.p`

@@ -7,12 +7,12 @@ export default function Header() {
       <Headline>React & Morty</Headline>
       <nav>
         <NavigationList>
-          <NavLink to="/" end>
+          <StyledNavLink to="/" end>
             Home
-          </NavLink>
-          <NavLink to="/random">Random</NavLink>
-          <NavLink to="/favorites">Favorites</NavLink>
-          <NavLink>Get creative</NavLink>
+          </StyledNavLink>
+          <StyledNavLink to="/random">Random</StyledNavLink>
+          <StyledNavLink to="/favorites">Favorites</StyledNavLink>
+          <StyledNavLink to="/creative">Get creative</StyledNavLink>
         </NavigationList>
       </nav>
     </StyledHeader>
@@ -46,9 +46,15 @@ const NavigationList = styled.div`
     &:last-child {
       border-right: none;
     }
+  }
+`;
 
-    &:hover {
-      background-color: var(--color-main-sub);
-    }
+const StyledNavLink = styled(NavLink)`
+  &.active {
+    background-color: var(--color-main-sub);
+  }
+
+  &:hover {
+    background-color: var(--color-main-sub);
   }
 `;
